@@ -1,0 +1,476 @@
+/* ---------- Fonts: Lato (self-hosted, SIL Open Font License) ---------- */
+@font-face {
+  font-family: "Lato";
+  src: url("../fonts/Lato/Lato-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lato";
+  src: url("../fonts/Lato/Lato-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lato";
+  src: url("../fonts/Lato/Lato-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lato";
+  src: url("../fonts/Lato/Lato-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lato";
+  src: url("../fonts/Lato/Lato-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- Colour palette ---------- */
+/*
+  Palette:  slate #5F7470 · salmon #FF928B · mint #8BE8CB · periwinkle #89A1EF · ink #1E1E24
+  The page is built from full-width colour bands. Each band sets its own text,
+  link, button and focus colours so every pairing passes WCAG AA
+  (4.5:1 for normal text, 3:1 for large text and focus outlines):
+    ink on mint 11.5 · ink on salmon 7.7 · ink on periwinkle 6.6
+    white on slate 5.0 · mint on slate 3.4 (large headings only)
+    slate on mint-tint 4.7 · ink on mint-tint 15.7
+*/
+:root {
+  --slate: #5F7470;
+  --salmon: #FF928B;
+  --mint: #8BE8CB;
+  --periwinkle: #89A1EF;
+  --ink: #1E1E24;
+  --white: #FFFFFF;
+  --mint-tint: #EEFCF7;  /* 15% mint on white, used as the light page background */
+
+  --bg: var(--mint-tint);
+  --text: var(--ink);
+  --heading: var(--slate);
+  --muted: var(--slate);
+  --link: var(--slate);
+  --button-bg: var(--salmon);
+  --button-text: var(--ink);
+  --button-border: var(--salmon);
+  --button-secondary: var(--ink);
+  --placeholder: var(--periwinkle);  /* shown while images are missing */
+  --focus: var(--slate);
+
+  --radius: 10px;
+  /* Side gutter grows with the screen: 1rem on phones, up to 5rem on large screens */
+  --gutter: clamp(1rem, 5vw, 5rem);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: var(--ink);
+    --text: var(--white);
+    --heading: var(--salmon);
+    --muted: var(--periwinkle);
+    --link: var(--mint);
+    --button-secondary: var(--salmon);
+    --placeholder: var(--slate);
+    --focus: var(--mint);
+  }
+}
+
+/* ---------- Colour bands (same in light and dark mode) ---------- */
+.band {
+  background: var(--band-bg);
+  color: var(--text);
+  padding-block: clamp(2.5rem, 6vw, 5rem);
+}
+.band h2:first-child { margin-top: 0; }
+
+.band-mint {
+  --band-bg: var(--mint);
+  --text: var(--ink); --heading: var(--ink); --muted: var(--ink); --link: var(--ink); --focus: var(--ink);
+  --button-bg: var(--salmon); --button-text: var(--ink); --button-border: var(--ink);
+}
+.band-salmon {
+  --band-bg: var(--salmon);
+  --text: var(--ink); --heading: var(--ink); --muted: var(--ink); --link: var(--ink); --focus: var(--ink);
+  --button-bg: var(--white); --button-text: var(--ink); --button-border: var(--ink);
+}
+.band-periwinkle {
+  --band-bg: var(--periwinkle);
+  --text: var(--ink); --heading: var(--ink); --muted: var(--ink); --link: var(--ink); --focus: var(--ink);
+  --button-bg: var(--mint); --button-text: var(--ink); --button-border: var(--ink);
+}
+.band-slate {
+  --band-bg: var(--slate);
+  --text: var(--white); --heading: var(--mint); --muted: var(--white); --link: var(--white); --focus: var(--mint);
+  --button-bg: var(--salmon); --button-text: var(--ink); --button-border: var(--salmon);
+  --button-secondary: var(--white);
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  /* Fills any space below a short page with the footer colour */
+  background: var(--slate);
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Lato", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* Fluid type: ~16px on phones, ~20px on large screens (still respects browser zoom) */
+  font-size: clamp(1rem, 0.9rem + 0.35vw, 1.25rem);
+  line-height: 1.6;
+}
+
+/* Layout spans the full width, but long lines of text are hard to read,
+   so paragraphs stop at a comfortable line length. */
+p { max-width: 70ch; }
+
+h1, h2, h3 { line-height: 1.2; color: var(--heading); }
+h1 { font-size: clamp(2rem, 1.4rem + 3vw, 4rem); font-weight: 900; margin: 0 0 1rem; }
+h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 700; margin: 2.5rem 0 1rem; }
+
+a { color: var(--link); text-underline-offset: 0.2em; }
+a:hover { text-decoration-thickness: 2px; }
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  /* Shows a neutral box while images are missing or loading */
+  background: var(--placeholder);
+  border-radius: var(--radius);
+}
+
+.container {
+  width: 100%;
+  padding-inline: var(--gutter);
+}
+
+/* ---------- Skip link ---------- */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  padding: 0.75rem 1rem;
+  background: var(--ink);
+  color: var(--mint);
+  font-weight: 700;
+  z-index: 10;
+}
+.skip-link:focus { top: 1rem; }
+
+/* ---------- Header / nav ---------- */
+/* Header: slate with white text, salmon rule underneath (both themes) */
+.site-header {
+  --focus: var(--mint);
+  background: var(--slate);
+  color: var(--white);
+  border-bottom: 5px solid var(--salmon);
+}
+
+.header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding-block: 1rem;
+}
+
+.site-title {
+  font-weight: 900;
+  font-size: 1.25rem;
+  color: var(--white);
+  text-decoration: none;
+}
+
+.nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list a {
+  display: inline-block;
+  padding: 0.5rem 0.25rem; /* comfortable touch target */
+  color: var(--white);
+}
+.nav-list a[aria-current="page"] {
+  font-weight: 700;
+  text-decoration-thickness: 3px;
+  text-decoration-color: var(--mint);
+}
+
+
+
+.lede { font-size: 1.15em; color: var(--muted); max-width: 45ch; }
+
+.actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0; }
+
+.button {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  border: 2px solid var(--button-border);
+  border-radius: var(--radius);
+  background: var(--button-bg);
+  color: var(--button-text);
+  font-weight: 700;
+  text-decoration: none;
+}
+.button:hover { text-decoration: underline; }
+.button-secondary { background: transparent; border-color: var(--button-secondary); color: var(--button-secondary); }
+
+/* ---------- Hero with rotating photos (CSS only, no JS) ---------- */
+/*
+  7 slides x 6s each = 42s cycle.
+  Slide 1 is a static base layer; slides 2-7 fade in on top of it in turn.
+  If you add or remove slides, update --cycle, the keyframe
+  percentages (100 / count) and the nth-child delays below.
+*/
+/*
+  Phones (default): photo on top, text panel underneath so it never hides the photo.
+  Tablets and up (48rem+): full-width photo banner with the text panel overlaid.
+*/
+.hero {
+  --slide-time: 6s;
+  --cycle: 42s; /* slide-time x number of slides */
+  position: relative;
+  overflow: hidden;
+  background: var(--placeholder);
+}
+
+.slides {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.slides li {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  animation: hero-fade var(--cycle) infinite;
+}
+.slides li:first-child { opacity: 1; animation: none; }
+.slides li:nth-child(2) { animation-delay: calc(var(--slide-time) * 1); }
+.slides li:nth-child(3) { animation-delay: calc(var(--slide-time) * 2); }
+.slides li:nth-child(4) { animation-delay: calc(var(--slide-time) * 3); }
+.slides li:nth-child(5) { animation-delay: calc(var(--slide-time) * 4); }
+.slides li:nth-child(6) { animation-delay: calc(var(--slide-time) * 5); }
+.slides li:nth-child(7) { animation-delay: calc(var(--slide-time) * 6); }
+
+.slides figure {
+  position: relative;
+  height: 100%;
+  margin: 0;
+}
+
+/* Photo credit: small label in the top-left corner of each photo,
+   clear of the text overlay (bottom-left) and pause control (top-right).
+   It fades in and out together with its photo. */
+.photo-credit {
+  position: absolute;
+  top: 0.75rem;
+  left: var(--gutter);
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  background: var(--slate);
+  color: var(--white);
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.slides img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0;
+}
+
+/* Each slide is 1/7 (~14.3%) of the cycle; the extra 3% is the crossfade. */
+@keyframes hero-fade {
+  0%     { opacity: 0; }
+  3%     { opacity: 1; }
+  14.3%  { opacity: 1; }
+  17.3%  { opacity: 0; }
+  100%   { opacity: 0; }
+}
+
+/* Pause: the checkbox (keyboard + screen reader accessible), or mouse hover */
+.hero:has(#pause-slides:checked) .slides li,
+.slides:hover li {
+  animation-play-state: paused;
+}
+
+.slides-control {
+  position: absolute;
+  top: 1rem;
+  right: var(--gutter);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius);
+  background: var(--slate);
+  color: var(--white);
+  font-size: 1rem;
+}
+.slides-control input {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0;
+  accent-color: var(--mint);
+}
+.slides-control label { cursor: pointer; }
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Phones: text sits in a slate band below the photo (.band-slate in the HTML) */
+.hero-content { padding-block: 1.75rem 2rem; }
+.hero-panel h1 { font-size: clamp(1.75rem, 1.2rem + 3vw, 4.5rem); }
+
+/* Buttons go full width on small phones for easier tapping */
+@media (max-width: 30rem) {
+  .actions .button { flex: 1 1 100%; text-align: center; }
+}
+
+/* Tablets and up: text overlays the photo. No box: a dark gradient fades up
+   from the bottom of the photo so white text stays readable on any image. */
+@media (min-width: 48rem) {
+  .hero {
+    display: flex;
+    align-items: flex-end;
+    /* svh = small viewport height, avoids jumps from mobile browser toolbars */
+    min-height: clamp(28rem, 80svh, 60rem);
+  }
+  .slides {
+    position: absolute;
+    inset: 0;
+    aspect-ratio: auto;
+  }
+  /* Over the photo: a dark fade keeps text readable on any image,
+     with mint heading, salmon button and mint outline button for colour. */
+  .hero-content {
+    --heading: var(--mint);
+    --text: var(--white);
+    --button-secondary: var(--mint);
+    padding-top: clamp(6rem, 18vw, 14rem);
+    padding-bottom: clamp(2rem, 5vw, 4rem);
+    background: linear-gradient(to top,
+      rgb(30 30 36 / 0.88) 0%,   /* ink */
+      rgb(30 30 36 / 0.78) 55%,
+      rgb(30 30 36 / 0) 100%);
+  }
+  .hero-panel {
+    max-width: 48rem;
+    padding: 0;
+    color: var(--white);
+    text-shadow: 0 1px 3px rgb(30 30 36 / 0.6);
+  }
+  .hero-panel .lede { color: var(--white); }
+  .hero-panel .button { text-shadow: none; }
+}
+.hero .slides-control :focus-visible { outline-color: var(--mint); }
+
+/* No motion requested: show only the first photo, hide the pause control */
+@media (prefers-reduced-motion: reduce) {
+  .slides li:not(:first-child) { display: none; }
+  .slides-control { display: none; }
+}
+
+/* ---------- About (mint) + Invite (salmon): stacked on phones, side by side on wide screens ---------- */
+.split { display: grid; }
+.split > .band { padding-inline: var(--gutter); }
+@media (min-width: 60rem) {
+  .split { grid-template-columns: 3fr 2fr; }
+}
+
+/* ---------- Videos page ---------- */
+.page-intro h1 { margin-bottom: 0.5rem; }
+.page-intro .lede { margin-bottom: 0; }
+
+/* Big thumbnails: 1 column on phones/tablets, 2 on wide screens, 3 on very wide */
+.video-list {
+  list-style: none;
+  margin: clamp(2.5rem, 6vw, 4rem) 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 34rem), 1fr));
+  gap: clamp(2rem, 4vw, 3.5rem);
+}
+
+.video-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  /* Each video gets an accent colour from the palette, in turn */
+  --card-accent: var(--salmon);
+}
+.video-card:nth-child(3n + 2) { --card-accent: var(--mint); }
+.video-card:nth-child(3n + 3) { --card-accent: var(--periwinkle); }
+
+/* Responsive 16:9 YouTube embed */
+.video-frame {
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--placeholder);
+  border-bottom: 6px solid var(--card-accent);
+}
+.video-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.video-card h2 { margin: 0; font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.75rem); }
+.video-card p { margin: 0; }
+.meta { color: var(--muted); font-size: 1rem; }
+.video-footnote { margin: 0 0 clamp(2.5rem, 6vw, 4rem); }
+
+/* ---------- Footer ---------- */
+/* Footer: periwinkle with ink text, mint rule on top (both themes) */
+.site-footer {
+  --link: var(--ink);
+  --focus: var(--ink);
+  background: var(--slate);
+  border-top: 5px solid var(--salmon);
+  padding-block: 1.5rem;
+  color: var(--white);
+  font-size: 1rem;
+}
+
+/* ---------- Motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
