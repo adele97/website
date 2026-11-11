@@ -4,8 +4,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
-  <title>Videos – Adele Carpenter</title>
-  <meta name="description" content="Recordings of conference talks by Adele Carpenter on YouTube.">
+  <title>Conference Talk Videos – Adele Carpenter</title>
+  <meta name="description" content="Recorded conference talks by software engineer Adele Carpenter: powerlifting and engineering, Java versus C#, and software lessons from aviation disasters.">
+  <meta name="author" content="Adele Carpenter">
+  <link rel="canonical" href="https://adelecarpenter.com/pages/videos.html">
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml">
+  <!-- Social previews (Open Graph / Bluesky / LinkedIn / X). URLs must be absolute. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Adele Carpenter">
+  <meta property="og:title" content="Conference Talk Videos – Adele Carpenter">
+  <meta property="og:description" content="Recorded conference talks from NDC, Voxxed and more by software engineer Adele Carpenter.">
+  <meta property="og:url" content="https://adelecarpenter.com/pages/videos.html">
+  <meta property="og:image" content="https://adelecarpenter.com/assets/images/tweakers-devsummit-2026-108.jpg">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1280">
+  <meta property="og:image:alt" content="Adele Carpenter on stage at Tweakers Dev Summit, smiling with both fists raised">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preload" href="../assets/fonts/Lato/Lato-Regular.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
@@ -37,48 +51,53 @@
     <div class="container">
       <!-- To add a video: copy one <li class="video-card"> block. Take the ID from its
            YouTube URL (youtube.com/watch?v=THIS_PART or youtu.be/THIS_PART) and put it in
-           BOTH the iframe src and the "Watch on YouTube" link. Put the talk title in THREE
-           places: the <h2>, the iframe's title attribute, and the hidden <span> inside
-           the "Watch on YouTube" link (screen readers announce the last two). -->
+           THREE places: the iframe src, the "Watch on YouTube" link, and the thumbnailUrl
+           <link>. Put the talk title in THREE places: the <h2>, the iframe's title
+           attribute, and the hidden <span> inside the "Watch on YouTube" link (screen
+           readers announce the last two). The itemprop/itemscope attributes are
+           schema.org microdata for search engines and agents; keep them. -->
       <ul class="video-list">
-        <li class="video-card">
-          <h2>How Powerlifting Made Me a Better Software Engineer</h2>
+        <li class="video-card" itemscope itemtype="https://schema.org/VideoObject">
+          <link itemprop="thumbnailUrl" href="https://i.ytimg.com/vi/H60E_8ZWh74/hqdefault.jpg">
+          <h2 itemprop="name">How Powerlifting Made Me a Better Software Engineer</h2>
           <div class="video-frame">
-            <iframe src="https://www.youtube-nocookie.com/embed/H60E_8ZWh74"
+            <iframe itemprop="embedUrl" src="https://www.youtube-nocookie.com/embed/H60E_8ZWh74"
                     title="How Powerlifting Made Me a Better Software Engineer"
                     loading="lazy"
                     allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin"
                     allowfullscreen></iframe>
           </div>
-          <p class="meta">NDC Oslo 2026 · <a href="https://www.youtube.com/watch?v=H60E_8ZWh74">Watch<span class="visually-hidden"> How Powerlifting Made Me a Better Software Engineer</span> on YouTube</a></p>
-          <p>No, it's not because I can physically flip desks now</p>
+          <p class="meta">NDC Oslo 2026 · <a itemprop="url" href="https://www.youtube.com/watch?v=H60E_8ZWh74">Watch<span class="visually-hidden"> How Powerlifting Made Me a Better Software Engineer</span> on YouTube</a></p>
+          <p itemprop="description">No, it's not because I can physically flip desks now</p>
         </li>
-        <li class="video-card">
-          <h2>Java Sucks (So C# Didn't Have To)</h2>
+        <li class="video-card" itemscope itemtype="https://schema.org/VideoObject">
+          <link itemprop="thumbnailUrl" href="https://i.ytimg.com/vi/GiRz1t5ptrQ/hqdefault.jpg">
+          <h2 itemprop="name">Java Sucks (So C# Didn't Have To)</h2>
           <div class="video-frame">
-            <iframe src="https://www.youtube-nocookie.com/embed/GiRz1t5ptrQ"
+            <iframe itemprop="embedUrl" src="https://www.youtube-nocookie.com/embed/GiRz1t5ptrQ"
                     title="Java Sucks (So C# Didn't Have To)"
                     loading="lazy"
                     allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin"
                     allowfullscreen></iframe>
           </div>
-          <p class="meta">NDC Copenhagen 2025 · <a href="https://www.youtube.com/watch?v=GiRz1t5ptrQ">Watch<span class="visually-hidden"> Java Sucks (So C# Didn't Have To)</span> on YouTube</a></p>
-          <p>Relax, it's not that serious</p>
+          <p class="meta">NDC Copenhagen 2025 · <a itemprop="url" href="https://www.youtube.com/watch?v=GiRz1t5ptrQ">Watch<span class="visually-hidden"> Java Sucks (So C# Didn't Have To)</span> on YouTube</a></p>
+          <p itemprop="description">Relax, it's not that serious</p>
         </li>
-        <li class="video-card">
-          <h2>Mayday Mark 2! More Software Lessons From Aviation Disasters</h2>
+        <li class="video-card" itemscope itemtype="https://schema.org/VideoObject">
+          <link itemprop="thumbnailUrl" href="https://i.ytimg.com/vi/6lEVtTJrfkI/hqdefault.jpg">
+          <h2 itemprop="name">Mayday Mark 2! More Software Lessons From Aviation Disasters</h2>
           <div class="video-frame">
-            <iframe src="https://www.youtube-nocookie.com/embed/6lEVtTJrfkI"
+            <iframe itemprop="embedUrl" src="https://www.youtube-nocookie.com/embed/6lEVtTJrfkI"
                     title="Mayday Mark 2! More Software Lessons From Aviation Disasters"
                     loading="lazy"
                     allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin"
                     allowfullscreen></iframe>
           </div>
-          <p class="meta">Voxxed Amsterdam 2025 · <a href="https://www.youtube.com/watch?v=6lEVtTJrfkI">Watch<span class="visually-hidden"> Mayday Mark 2! More Software Lessons From Aviation Disasters</span> on YouTube</a></p>
-          <p>Strap yourself in, it is that serious</p>
+          <p class="meta">Voxxed Amsterdam 2025 · <a itemprop="url" href="https://www.youtube.com/watch?v=6lEVtTJrfkI">Watch<span class="visually-hidden"> Mayday Mark 2! More Software Lessons From Aviation Disasters</span> on YouTube</a></p>
+          <p itemprop="description">Strap yourself in, it is that serious</p>
         </li>
       </ul>
 

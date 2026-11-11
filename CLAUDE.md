@@ -45,7 +45,7 @@ Headless Chrome won't render narrower than 500px. To check phone widths, screens
   - With reduced motion, only the first slide shows.
   - Below 48rem the photo sits above a slate text band; from 48rem up the text overlays the photo on an ink gradient.
 - **Videos** (`pages/videos.html`) are `<li class="video-card">` blocks with a `youtube-nocookie.com` iframe.
-  - Each video's ID appears twice: the embed `src` and the "Watch on YouTube" link.
+  - Each video's ID appears three times: the embed `src`, the "Watch on YouTube" link and the `thumbnailUrl` `<link>`.
   - Its title appears three times: the `<h2>`, the iframe `title` attribute, and a `.visually-hidden` span inside the "Watch on YouTube" link. The span keeps the identical link texts distinguishable for screen readers.
 - **Hero text contrast over the photo** depends on two ink layers in `.hero-content` (from 48rem up):
   - a light bottom-up fade on the element itself;
@@ -56,6 +56,10 @@ Headless Chrome won't render narrower than 500px. To check phone widths, screens
 - **Footer social links** (LinkedIn, Bluesky) use inline SVG icons from Simple Icons (CC0) with `fill="currentColor"` and `aria-hidden="true"`, next to visible text labels.
   - Keep the icons inline. CSS `mask-image` with SVG files doesn't load over `file://`, and inline SVG also stays visible in forced-colours mode.
   - The footer is slate, so its links must be white. Ink on slate fails contrast.
+- **SEO and agents.** Each page's `<head>` has a `<title>`, a meta description, a `rel="canonical"` link and Open Graph/Twitter tags. These use absolute `https://adelecarpenter.com/...` URLs, which is the one exception to the relative-links rule. New pages need all of these, plus an entry in `sitemap.xml` and `llms.txt`.
+  - Structured data is schema.org **microdata** (`itemscope`/`itemprop`), not JSON-LD, because JSON-LD needs a `<script>` tag. On the home page the bio `<section>` is the `Person`; its hidden `<meta>`/`<link>` tags come after the `<h2>` so that `.band h2:first-child` still matches. Each `.video-card` is a `VideoObject`.
+  - `robots.txt` lets search engines and AI search/assistant agents in and blocks AI training crawlers. That is the owner's chosen balance ("findable, not training data").
+  - `llms.txt` is a plain Markdown summary for agents. Keep it factual and limited to what the site already says publicly.
 - **Fonts:** Lato is self-hosted from `assets/fonts/Lato/` through `@font-face` (the OFL licence file is kept there).
 
 ## Images

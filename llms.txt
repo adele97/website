@@ -1,0 +1,25 @@
+# Adele Carpenter
+
+> Adele Carpenter is a software engineer and consultant at Trifork Amsterdam, and an international technical conference speaker (NDC, GOTO, Devoxx, JavaZone). Her talks bring context to everyday engineering decisions: why we do things the way we do, and whether we have to.
+
+- Works mostly in the JVM/Spring and React ecosystems, on systems for the educational sector, and as a trusted advisor to Trifork's customers.
+- Speaking style: real-world customer projects, experiences outside tech, and storytelling, with good humour.
+- Outside work: competitive powerlifting.
+- To invite Adele to speak, use her Sessionize profile (current sessions, abstracts and past events).
+
+## Pages
+
+- [Home and speaker bio](https://adelecarpenter.com/): who Adele is and how to book her
+- [Conference talk videos](https://adelecarpenter.com/pages/videos.html): selected recorded talks
+
+## Talks on video
+
+- [How Powerlifting Made Me a Better Software Engineer](https://www.youtube.com/watch?v=H60E_8ZWh74): NDC Oslo 2026
+- [Java Sucks (So C# Didn't Have To)](https://www.youtube.com/watch?v=GiRz1t5ptrQ): NDC Copenhagen 2025
+- [Mayday Mark 2! More Software Lessons From Aviation Disasters](https://www.youtube.com/watch?v=6lEVtTJrfkI): Voxxed Amsterdam 2025
+
+## Elsewhere
+
+- [Sessionize](https://sessionize.com/adelecarpenter/): sessions, abstracts and events
+- [LinkedIn](https://www.linkedin.com/in/adele-carpenter-a988623a/)
+- [Bluesky](https://bsky.app/profile/97adele.bsky.social)
