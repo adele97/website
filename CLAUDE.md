@@ -46,7 +46,16 @@ Headless Chrome won't render narrower than 500px. To check phone widths, screens
   - Below 48rem the photo sits above a slate text band; from 48rem up the text overlays the photo on an ink gradient.
 - **Videos** (`pages/videos.html`) are `<li class="video-card">` blocks with a `youtube-nocookie.com` iframe.
   - Each video's ID appears twice: the embed `src` and the "Watch on YouTube" link.
-  - Its title also appears twice: the `<h2>` and the iframe `title` attribute.
+  - Its title appears three times: the `<h2>`, the iframe `title` attribute, and a `.visually-hidden` span inside the "Watch on YouTube" link. The span keeps the identical link texts distinguishable for screen readers.
+- **Hero text contrast over the photo** depends on two ink layers in `.hero-content` (from 48rem up):
+  - a light bottom-up fade on the element itself;
+  - a darker patch on `::before`, behind the text only. It fades out to the right after `gutter + 48rem` and towards the top via `mask-image`.
+  - Together they keep the mint `h1` at ≥5.3:1 and body text and buttons at ≥9:1, even over a white pixel.
+  - The owner found full-width shading too heavy. Keep the photo clear outside the text area.
+  - Re-measure the text extents if the hero layout or copy changes.
+- **Footer social links** (LinkedIn, Bluesky) use inline SVG icons from Simple Icons (CC0) with `fill="currentColor"` and `aria-hidden="true"`, next to visible text labels.
+  - Keep the icons inline. CSS `mask-image` with SVG files doesn't load over `file://`, and inline SVG also stays visible in forced-colours mode.
+  - The footer is slate, so its links must be white. Ink on slate fails contrast.
 - **Fonts:** Lato is self-hosted from `assets/fonts/Lato/` through `@font-face` (the OFL licence file is kept there).
 
 ## Images
